@@ -1,0 +1,794 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h2>2 Simple UI</h2>
+    <p>
+    <p>
+        import android.os.Bundle<br />
+        import androidx.activity.ComponentActivity<br />
+        import androidx.activity.compose.setContent<br />
+        import androidx.compose.foundation.layout.*<br />
+        import androidx.compose.foundation.lazy.LazyColumn<br />
+        import androidx.compose.foundation.lazy.items<br />
+        import androidx.compose.material3.*<br />
+        import androidx.compose.runtime.*<br />
+        import androidx.compose.ui.Modifier<br />
+        import androidx.compose.ui.unit.dp<br />
+        import androidx.compose.ui.unit.sp<br /><br />
+
+        class MainActivity : ComponentActivity() {<br />
+        &nbsp;&nbsp;override fun onCreate(savedInstanceState: Bundle?) {<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;super.onCreate(savedInstanceState)<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;setContent {<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;MyApp()<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;}<br />
+        &nbsp;&nbsp;}<br />
+        }<br /><br />
+
+        @OptIn(ExperimentalMaterial3Api::class)<br />
+        @Composable<br />
+        fun MyApp() {<br />
+        &nbsp;&nbsp;MaterialTheme {<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;Scaffold(<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;topBar = {<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TopAppBar(<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;title = { Text("Simple UI with Compose") }<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;)<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;) { padding -&gt;<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Column(<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;modifier = Modifier<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.padding(padding)<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.padding(16.dp)<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.fillMaxSize()<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;) {<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;var text by remember { mutableStateOf("") }<br /><br />
+
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Text(<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;text = "Welcome to Jetpack Compose",<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;fontSize = 24.sp,<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;modifier = Modifier.padding(bottom = 16.dp)<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;)<br /><br />
+
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TextField(<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;value = text,<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;onValueChange = { text = it },<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;label = { Text("Enter something") },<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;modifier = Modifier.fillMaxWidth()<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;)<br /><br />
+
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Spacer(modifier = Modifier.height(16.dp))<br /><br />
+
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Button(onClick = { /* Do something */ }) {<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Text("Click Me")<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br /><br />
+
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Spacer(modifier = Modifier.height(24.dp))<br /><br />
+
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Text("Items:", fontSize = 20.sp)<br /><br />
+
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;LazyColumn {<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;items(listOf("Item 1", "Item 2", "Item 3", "Item
+        4")) { item -&gt;<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Card(<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;modifier = Modifier<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.padding(8.dp)<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.fillMaxWidth()<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;) {<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Text(<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;text =
+        item,<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;modifier =
+        Modifier.padding(16.dp),<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;fontSize =
+        18.sp<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;)<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;}<br />
+        &nbsp;&nbsp;}<br />
+    </p>
+    </p>
+
+    <h2>3 Animation on views</h2>
+    <p>
+    <p>
+        @Composable<br />
+        fun AnimatedBox() {<br />
+        &nbsp;&nbsp;val infiniteTransition = rememberInfiniteTransition(label = "ColorScaleAnimation")<br /><br />
+
+        &nbsp;&nbsp;val color by infiniteTransition.animateColor(<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;initialValue = Color.Red,<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;targetValue = Color.Blue,<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;animationSpec = infiniteRepeatable(<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;animation = tween(1000),<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;repeatMode = RepeatMode.Reverse<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;), label = "ColorAnim"<br />
+        &nbsp;&nbsp;)<br /><br />
+
+        &nbsp;&nbsp;val scale by infiniteTransition.animateFloat(<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;initialValue = 1f,<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;targetValue = 1.5f,<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;animationSpec = infiniteRepeatable(<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;animation = tween(1000),<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;repeatMode = RepeatMode.Reverse<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;), label = "ScaleAnim"<br />
+        &nbsp;&nbsp;)<br /><br />
+
+        &nbsp;&nbsp;Box(<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;modifier = Modifier<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.fillMaxSize()<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.padding(32.dp),<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;contentAlignment = Alignment.Center<br />
+        &nbsp;&nbsp;) {<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;Box(<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;modifier = Modifier<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.size(200.dp)<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.scale(scale)<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.background(color)<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;)<br />
+        &nbsp;&nbsp;}<br />
+        }<br /><br />
+
+        Dependencies Used : <br />
+        <em>build.gradle.kts</em><br />
+        dependencies {<br />
+        &nbsp;&nbsp;implementation("androidx.compose.ui:ui:1.6.4")<br />
+        &nbsp;&nbsp;implementation("androidx.compose.material3:material3:1.2.1")<br />
+        &nbsp;&nbsp;implementation("androidx.compose.ui:ui-tooling-preview:1.6.4")<br />
+        &nbsp;&nbsp;implementation("androidx.activity:activity-compose:1.9.0")<br />
+        }
+    </p>
+    </p>
+
+    <h2>4 User Registration</h2>
+    <p>
+    <p>
+        @Composable<br />
+        fun RegisterLoginScreen() {<br />
+        &nbsp;&nbsp;val auth = FirebaseAuth.getInstance()<br />
+        &nbsp;&nbsp;val context = LocalContext.current<br /><br />
+
+        &nbsp;&nbsp;var email by remember { mutableStateOf("") }<br />
+        &nbsp;&nbsp;var password by remember { mutableStateOf("") }<br />
+        &nbsp;&nbsp;var isLogin by remember { mutableStateOf(true) }<br /><br />
+
+        &nbsp;&nbsp;Column(<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;modifier = Modifier<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.fillMaxSize()<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.padding(24.dp),<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;verticalArrangement = Arrangement.Center<br />
+        &nbsp;&nbsp;) {<br /><br />
+
+        &nbsp;&nbsp;&nbsp;&nbsp;Text(<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;text = if (isLogin) "Login" else "Register",<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;style = MaterialTheme.typography.headlineMedium,<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;modifier = Modifier.padding(bottom = 16.dp)<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;)<br /><br />
+
+        &nbsp;&nbsp;&nbsp;&nbsp;OutlinedTextField(<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;value = email,<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;onValueChange = { email = it },<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;label = { Text("Email") },<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;modifier = Modifier.fillMaxWidth()<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;)<br /><br />
+
+        &nbsp;&nbsp;&nbsp;&nbsp;Spacer(modifier = Modifier.height(12.dp))<br /><br />
+
+        &nbsp;&nbsp;&nbsp;&nbsp;OutlinedTextField(<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;value = password,<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;onValueChange = { password = it },<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;label = { Text("Password") },<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;modifier = Modifier.fillMaxWidth()<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;)<br /><br />
+
+        &nbsp;&nbsp;&nbsp;&nbsp;Spacer(modifier = Modifier.height(24.dp))<br /><br />
+
+        &nbsp;&nbsp;&nbsp;&nbsp;Button(<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;onClick = {<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if (isLogin) {<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;auth.signInWithEmailAndPassword(email,
+        password)<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.addOnCompleteListener { task
+        -&gt;<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if (task.isSuccessful)
+        {<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Toast.makeText(context,
+        "Login Successful", Toast.LENGTH_SHORT).show()<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} else {<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Toast.makeText(context,
+        "Login Failed: ${task.exception?.message}", Toast.LENGTH_SHORT).show()<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} else {<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;auth.createUserWithEmailAndPassword(email,
+        password)<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.addOnCompleteListener { task
+        -&gt;<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if (task.isSuccessful)
+        {<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Toast.makeText(context,
+        "Registration Successful", Toast.LENGTH_SHORT).show()<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} else {<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Toast.makeText(context,
+        "Registration Failed: ${task.exception?.message}", Toast.LENGTH_SHORT).show()<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;},<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;modifier = Modifier.fillMaxWidth()<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;) {<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Text(text = if (isLogin) "Login" else "Register")<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;}<br /><br />
+
+        &nbsp;&nbsp;&nbsp;&nbsp;TextButton(onClick = { isLogin = !isLogin }) {<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Text(text = if (isLogin) "Don't have an account? Register" else "Already
+        registered? Login")<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;}<br />
+        &nbsp;&nbsp;}<br />
+        }<br /><br />
+
+        <strong>Permission Used:</strong><br />
+        <em>AndroidManifest.xml</em><br />
+        &lt;uses-permission android:name="android.permission.INTERNET"/&gt;<br /><br />
+
+        <strong>build.gradle.kts</strong><br />
+        dependencies {<br />
+        &nbsp;&nbsp;implementation("androidx.compose.ui:ui:1.6.4")<br />
+        &nbsp;&nbsp;implementation("androidx.compose.material3:material3:1.2.1")<br />
+        &nbsp;&nbsp;implementation("androidx.compose.ui:ui-tooling-preview:1.6.4")<br />
+        &nbsp;&nbsp;implementation("androidx.activity:activity-compose:1.9.0")<br />
+        &nbsp;&nbsp;implementation(platform("com.google.firebase:firebase-bom:32.8.1"))<br />
+        &nbsp;&nbsp;implementation("com.google.firebase:firebase-auth-ktx")<br />
+        }<br /><br />
+
+        <strong>Plugin:</strong><br />
+        id("com.google.gms.google-services")
+    </p>
+    </p>
+
+    <h2>5 Navigation Drawer</h2>
+    <p>
+    <p>
+        <b>MainActivity.java</b><br />
+        public class MainActivity extends AppCompatActivity {<br />
+        &nbsp;&nbsp;private DrawerLayout drawerLayout;<br />
+        &nbsp;&nbsp;private NavigationView navigationView;<br />
+        &nbsp;&nbsp;private Toolbar toolbar;<br />
+        &nbsp;&nbsp;@Override<br />
+        &nbsp;&nbsp;protected void onCreate(Bundle savedInstanceState) {<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;super.onCreate(savedInstanceState);<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;setContentView(R.layout.activity_main);<br /><br />
+
+        &nbsp;&nbsp;&nbsp;&nbsp;toolbar = findViewById(R.id.toolbar);<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;setSupportActionBar(toolbar);<br /><br />
+
+        &nbsp;&nbsp;&nbsp;&nbsp;drawerLayout = findViewById(R.id.drawer_layout);<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;navigationView = findViewById(R.id.nav_view);<br /><br />
+
+        &nbsp;&nbsp;&nbsp;&nbsp;ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;this, drawerLayout, toolbar, R.string.navigation_drawer_open,
+        R.string.navigation_drawer_close);<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;drawerLayout.addDrawerListener(toggle);<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;toggle.syncState();<br /><br />
+
+        &nbsp;&nbsp;&nbsp;&nbsp;// Default fragment<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;if (savedInstanceState == null) {<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;getSupportFragmentManager().beginTransaction()<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.replace(R.id.fragment_container, new
+        AboutUsFragment())<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.commit();<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;navigationView.setCheckedItem(R.id.nav_about);<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;}<br /><br />
+
+        &nbsp;&nbsp;&nbsp;&nbsp;navigationView.setNavigationItemSelectedListener(item -&gt; {<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Fragment selectedFragment = null;<br /><br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;switch (item.getItemId()) {<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;case R.id.nav_about:<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;selectedFragment = new
+        AboutUsFragment();<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;break;<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;case R.id.nav_departments:<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;selectedFragment = new
+        DepartmentsFragment();<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;break;<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;case R.id.nav_student:<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;selectedFragment = new
+        StudentSectionFragment();<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;break;<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;case R.id.nav_contact:<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;selectedFragment = new
+        ContactUsFragment();<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;break;<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br /><br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if (selectedFragment != null) {<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;getSupportFragmentManager().beginTransaction()<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.replace(R.id.fragment_container,
+        selectedFragment)<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.commit();<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;drawerLayout.closeDrawer(GravityCompat.START);<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return true;<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;});<br />
+        &nbsp;&nbsp;}<br />
+        &nbsp;&nbsp;@Override<br />
+        &nbsp;&nbsp;public void onBackPressed() {<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;if (drawerLayout.isDrawerOpen(GravityCompat.START)) {<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;drawerLayout.closeDrawer(GravityCompat.START);<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;} else {<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;super.onBackPressed();<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;}<br />
+        &nbsp;&nbsp;}<br />
+        }<br /><br />
+
+        <b>activity_main.xml</b><br />
+        &lt;androidx.drawerlayout.widget.DrawerLayout<br />
+        &nbsp;&nbsp;xmlns:android="http://schemas.android.com/apk/res/android"<br />
+        &nbsp;&nbsp;xmlns:app="http://schemas.android.com/apk/res-auto"<br />
+        &nbsp;&nbsp;android:id="@+id/drawer_layout"<br />
+        &nbsp;&nbsp;android:layout_width="match_parent"<br />
+        &nbsp;&nbsp;android:layout_height="match_parent"&gt;<br /><br />
+
+        &nbsp;&nbsp;&lt;LinearLayout<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;android:orientation="vertical"<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;android:layout_width="match_parent"<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;android:layout_height="match_parent"&gt;<br /><br />
+
+        &nbsp;&nbsp;&nbsp;&nbsp;&lt;androidx.appcompat.widget.Toolbar<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;android:id="@+id/toolbar"<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;android:layout_height="?attr/actionBarSize"<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;android:layout_width="match_parent"<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;android:background="?attr/colorPrimary"<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;app:title="My College App"<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        /&gt;<br /><br />
+
+        &nbsp;&nbsp;&nbsp;&nbsp;&lt;FrameLayout<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;android:id="@+id/fragment_container"<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;android:layout_width="match_parent"<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;android:layout_height="match_parent" /&gt;<br />
+        &nbsp;&nbsp;&lt;/LinearLayout&gt;<br /><br />
+
+        &nbsp;&nbsp;&lt;com.google.android.material.navigation.NavigationView<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;android:id="@+id/nav_view"<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;android:layout_width="wrap_content"<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;android:layout_height="match_parent"<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;android:layout_gravity="start"<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;app:menu="@menu/drawer_menu"<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;app:headerLayout="@layout/nav_header" /&gt;<br />
+        &lt;/androidx.drawerlayout.widget.DrawerLayout&gt;<br /><br />
+
+        <b>drawer_menu.xml</b><br />
+        &lt;menu xmlns:android="http://schemas.android.com/apk/res/android"&gt;<br />
+        &nbsp;&nbsp;&lt;item android:id="@+id/nav_about" android:title="About Us" /&gt;<br />
+        &nbsp;&nbsp;&lt;item android:id="@+id/nav_departments" android:title="Departments" /&gt;<br />
+        &nbsp;&nbsp;&lt;item android:id="@+id/nav_student" android:title="Student Section" /&gt;<br />
+        &nbsp;&nbsp;&lt;item android:id="@+id/nav_contact" android:title="Contact Us" /&gt;<br />
+        &lt;/menu&gt;<br />
+    </p>
+    </p>
+
+    <h2>6 Recycler View</h2>
+    <p>
+    <p>
+        <b>MainActivity.kt</b><br />
+        data class Contact(val name: String, val phone: String)<br /><br />
+
+        @OptIn(ExperimentalMaterial3Api::class)<br />
+        @Composable<br />
+        fun ContactListApp() {<br />
+        &nbsp;&nbsp;val context = LocalContext.current<br />
+        &nbsp;&nbsp;var contacts by remember { mutableStateOf&lt;List&lt;Contact&gt;&gt;(emptyList()) }<br /><br />
+
+        &nbsp;&nbsp;val permissionLauncher = rememberLauncherForActivityResult(<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;contract = ActivityResultContracts.RequestPermission()<br />
+        &nbsp;&nbsp;) { isGranted -&gt;<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;if (isGranted) {<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;contacts = fetchContacts(context)<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;}<br />
+        &nbsp;&nbsp;}<br /><br />
+
+        &nbsp;&nbsp;LaunchedEffect(key1 = true) {<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;if (ContextCompat.checkSelfPermission(context,
+        android.Manifest.permission.READ_CONTACTS)<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;== PackageManager.PERMISSION_GRANTED<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;) {<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;contacts = fetchContacts(context)<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;} else {<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;permissionLauncher.launch(android.Manifest.permission.READ_CONTACTS)<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;}<br />
+        &nbsp;&nbsp;}<br /><br />
+
+        &nbsp;&nbsp;Scaffold(<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;topBar = {<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TopAppBar(title = { Text("Contact List") })<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;}<br />
+        &nbsp;&nbsp;) { padding -&gt;<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;LazyColumn(<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;modifier = Modifier<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.padding(padding)<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.padding(16.dp)<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;) {<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;items(contacts) { contact -&gt;<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Column(modifier = Modifier.padding(8.dp)) {<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Text(text = "Name: ${contact.name}", style =
+        MaterialTheme.typography.bodyLarge)<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Text(text = "Phone: ${contact.phone}", style =
+        MaterialTheme.typography.bodyMedium)<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;HorizontalDivider()<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;}<br />
+        &nbsp;&nbsp;}<br />
+        }<br /><br />
+
+        fun fetchContacts(context: Context): List&lt;Contact&gt; {<br />
+        &nbsp;&nbsp;val contactsList = mutableListOf&lt;Contact&gt;()<br />
+        &nbsp;&nbsp;val resolver = context.contentResolver<br />
+        &nbsp;&nbsp;val cursor = resolver.query(<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;ContactsContract.CommonDataKinds.Phone.CONTENT_URI,<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;null, null, null, null<br />
+        &nbsp;&nbsp;)<br /><br />
+
+        &nbsp;&nbsp;cursor?.use {<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;val nameIndex =
+        it.getColumnIndex(ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME)<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;val numberIndex =
+        it.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER)<br /><br />
+
+        &nbsp;&nbsp;&nbsp;&nbsp;while (it.moveToNext()) {<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;val name = it.getString(nameIndex) ?: "No Name"<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;val phone = it.getString(numberIndex) ?: "No Number"<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;contactsList.add(Contact(name, phone))<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;}<br />
+        &nbsp;&nbsp;}<br /><br />
+
+        &nbsp;&nbsp;return contactsList<br />
+        }<br /><br />
+
+        <b>Permission Used (AndroidManifest.xml):</b><br />
+        &lt;uses-permission android:name="android.permission.READ_CONTACTS"/&gt;<br />
+    </p>
+    </p>
+
+    <h2>7 Calls on Mobile</h2>
+    <p>
+    <p>
+        <b>MainActivity.java</b><br />
+        package com.example.makereceivecalls_application;<br /><br />
+
+        import android.Manifest;<br />
+        import android.content.Intent;<br />
+        import android.net.Uri;<br />
+        import android.os.Bundle;<br />
+        import android.widget.Button;<br />
+        import android.widget.EditText;<br />
+        import android.widget.Toast;<br />
+        import androidx.appcompat.app.AppCompatActivity;<br />
+        import androidx.core.app.ActivityCompat;<br /><br />
+
+        public class MainActivity extends AppCompatActivity {<br />
+        &nbsp;&nbsp;EditText numberInput;<br />
+        &nbsp;&nbsp;Button callBtn;<br /><br />
+        &nbsp;&nbsp;@Override<br />
+        &nbsp;&nbsp;protected void onCreate(Bundle savedInstanceState) {<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;super.onCreate(savedInstanceState);<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;setContentView(R.layout.activity_main);<br /><br />
+        &nbsp;&nbsp;&nbsp;&nbsp;numberInput = findViewById(R.id.editTextNumber);<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;callBtn = findViewById(R.id.callButton);<br /><br />
+        &nbsp;&nbsp;&nbsp;&nbsp;callBtn.setOnClickListener(v -&gt; {<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;String number = numberInput.getText().toString();<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if (!number.isEmpty()) {<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Intent callIntent = new Intent(Intent.ACTION_CALL);<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;callIntent.setData(Uri.parse("tel:" + number));<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ActivityCompat.requestPermissions(this, new
+        String[]{Manifest.permission.CALL_PHONE}, 1);<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;startActivity(callIntent);<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} else {<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Toast.makeText(this, "Enter a phone number",
+        Toast.LENGTH_SHORT).show();<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;});<br />
+        &nbsp;&nbsp;}<br />
+        }<br /><br />
+
+        <b>activity_main.xml</b><br />
+        &lt;?xml version="1.0" encoding="utf-8"?&gt;<br />
+        &lt;LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"<br />
+        &nbsp;&nbsp;android:layout_width="match_parent"<br />
+        &nbsp;&nbsp;android:layout_height="match_parent"<br />
+        &nbsp;&nbsp;android:padding="16dp"<br />
+        &nbsp;&nbsp;android:orientation="vertical"&gt;<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&lt;EditText<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;android:id="@+id/editTextNumber"<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;android:layout_width="match_parent"<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;android:layout_height="wrap_content"<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;android:minHeight="48dp"<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;android:padding="12dp"<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;android:hint="Enter phone number"<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;android:inputType="phone" /&gt;<br /><br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&lt;Button<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;android:id="@+id/callButton"<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;android:layout_width="match_parent"<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;android:layout_height="wrap_content"<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;android:text="Call"<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;android:layout_marginTop="16dp"/&gt;<br />
+        &lt;/LinearLayout&gt;<br /><br />
+
+        <b>CallReceiver.java</b><br />
+        package com.example.makereceivecalls_application;<br /><br />
+        import android.content.BroadcastReceiver;<br />
+        import android.content.Context;<br />
+        import android.content.Intent;<br />
+        import android.telephony.TelephonyManager;<br />
+        import android.widget.Toast;<br /><br />
+
+        public class CallReceiver extends BroadcastReceiver {<br />
+        &nbsp;&nbsp;@Override<br />
+        &nbsp;&nbsp;public void onReceive(Context context, Intent intent) {<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;String state = intent.getStringExtra(TelephonyManager.EXTRA_STATE);<br /><br />
+        &nbsp;&nbsp;&nbsp;&nbsp;if (TelephonyManager.EXTRA_STATE_RINGING.equals(state)) {<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;String incomingNumber =
+        intent.getStringExtra(TelephonyManager.EXTRA_INCOMING_NUMBER);<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Toast.makeText(context, "Incoming Call from: " + incomingNumber,
+        Toast.LENGTH_LONG).show();<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;}<br />
+        &nbsp;&nbsp;}<br />
+        }<br />
+    </p>
+    </p>
+
+    <h2>8 Snapshot by using the camera</h2>
+    <p>
+    <p>
+        <b>MainActivity.kt</b><br />
+        @OptIn(ExperimentalMaterial3Api::class)<br />
+        @Composable<br />
+        fun CameraSnapshotApp() {<br />
+        &nbsp;&nbsp;var capturedImage by remember { mutableStateOf&lt;Bitmap?&gt;(null) }<br /><br />
+
+        &nbsp;&nbsp;val cameraLauncher = rememberLauncherForActivityResult(<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;contract = ActivityResultContracts.TakePicturePreview()<br />
+        &nbsp;&nbsp;) { bitmap -&gt;<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;capturedImage = bitmap<br />
+        &nbsp;&nbsp;}<br /><br />
+
+        &nbsp;&nbsp;MADEXPTheme {<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;Scaffold(<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;topBar = {<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TopAppBar(title = { Text("Camera Snapshot App") })<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;) { padding -&gt;<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Column(<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;modifier = Modifier<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.padding(padding)<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.padding(24.dp)<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.fillMaxSize(),<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;verticalArrangement = Arrangement.Center<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;) {<br /><br />
+
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Button(<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;onClick = { cameraLauncher.launch(null) },<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;modifier = Modifier.fillMaxWidth()<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;) {<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Text("Take Snapshot")<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br /><br />
+
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Spacer(modifier = Modifier.height(24.dp))<br /><br />
+
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;capturedImage?.let { bitmap -&gt;<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Image(<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;bitmap = bitmap.asImageBitmap(),<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;contentDescription = "Captured
+        Image",<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;modifier = Modifier<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.fillMaxWidth()<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.height(400.dp)<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;)<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;}<br />
+        &nbsp;&nbsp;}<br />
+        }
+    </p>
+    </p>
+
+    <h2>9 Sensors</h2>
+    <p>
+    <p>
+        <b>MainActivity.kt</b><br />
+        @OptIn(ExperimentalMaterial3Api::class)<br />
+        @Composable<br />
+        fun SensorDataScreen() {<br />
+        &nbsp;&nbsp;val context = LocalContext.current<br />
+        &nbsp;&nbsp;val sensorManager = context.getSystemService(Context.SENSOR_SERVICE) as SensorManager<br /><br />
+
+        &nbsp;&nbsp;var accelerometerData by remember { mutableStateOf("Waiting...") }<br />
+        &nbsp;&nbsp;var gyroscopeData by remember { mutableStateOf("Waiting...") }<br />
+        &nbsp;&nbsp;var orientationData by remember { mutableStateOf("Waiting...") }<br /><br />
+
+        &nbsp;&nbsp;DisposableEffect(Unit) {<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;val listener = object : SensorEventListener {<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;override fun onSensorChanged(event: SensorEvent) {<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;when (event.sensor.type) {<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Sensor.TYPE_ACCELEROMETER -&gt; {<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;accelerometerData = "X:
+        ${event.values[0]} Y: ${event.values[1]} Z: ${event.values[2]}"<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Sensor.TYPE_GYROSCOPE -&gt; {<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;gyroscopeData = "X: ${event.values[0]}
+        Y: ${event.values[1]} Z: ${event.values[2]}"<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Sensor.TYPE_ROTATION_VECTOR -&gt; {<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;val rotationMatrix = FloatArray(9)<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SensorManager.getRotationMatrixFromVector(rotationMatrix,
+        event.values)<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;val orientations = FloatArray(3)<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SensorManager.getOrientation(rotationMatrix,
+        orientations)<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;orientationData = "Azimuth:
+        ${Math.toDegrees(orientations[0].toDouble())} Pitch: ${Math.toDegrees(orientations[1].toDouble())} Roll:
+        ${Math.toDegrees(orientations[2].toDouble())}"<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;override fun onAccuracyChanged(sensor: Sensor?, accuracy: Int) {}<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;}<br /><br />
+
+        &nbsp;&nbsp;&nbsp;&nbsp;sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER)?.also {<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;sensorManager.registerListener(listener, it,
+        SensorManager.SENSOR_DELAY_NORMAL)<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;}<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;sensorManager.getDefaultSensor(Sensor.TYPE_GYROSCOPE)?.also {<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;sensorManager.registerListener(listener, it,
+        SensorManager.SENSOR_DELAY_NORMAL)<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;}<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;sensorManager.getDefaultSensor(Sensor.TYPE_ROTATION_VECTOR)?.also {<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;sensorManager.registerListener(listener, it,
+        SensorManager.SENSOR_DELAY_NORMAL)<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;}<br /><br />
+
+        &nbsp;&nbsp;&nbsp;&nbsp;onDispose {<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;sensorManager.unregisterListener(listener)<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;}<br />
+        &nbsp;&nbsp;}<br /><br />
+
+        &nbsp;&nbsp;MADEXPTheme {<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;Scaffold(<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;topBar = { TopAppBar(title = { Text("Sensor Data") }) }<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;) { padding -&gt;<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Column(<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;modifier = Modifier<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.padding(padding)<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.padding(16.dp)<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;) {<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Text(text = "Accelerometer", style =
+        MaterialTheme.typography.titleMedium)<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Text(text = accelerometerData)<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Spacer(modifier = Modifier.height(16.dp))<br /><br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Text(text = "Gyroscope", style =
+        MaterialTheme.typography.titleMedium)<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Text(text = gyroscopeData)<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Spacer(modifier = Modifier.height(16.dp))<br /><br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Text(text = "Orientation", style =
+        MaterialTheme.typography.titleMedium)<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Text(text = orientationData)<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;}<br />
+        &nbsp;&nbsp;}<br />
+        }
+    </p>
+    </p>
+
+    <h2>10 Publish All Sites</h2>
+    <p>
+    <p>
+        &lt;!DOCTYPE html&gt;<br />
+        &lt;html lang="en"&gt;<br />
+        &lt;head&gt;<br />
+        &nbsp;&nbsp;&lt;meta charset="UTF-8"&gt;<br />
+        &nbsp;&nbsp;&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;<br />
+        &nbsp;&nbsp;&lt;title&gt;My Android Apps Showcase&lt;/title&gt;<br />
+        &nbsp;&nbsp;&lt;link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&amp;display=swap"
+        rel="stylesheet"&gt;<br />
+        &nbsp;&nbsp;&lt;link rel="stylesheet" href="styles.css"&gt;<br />
+        &lt;/head&gt;<br />
+        &lt;body&gt;<br /><br />
+
+        &lt;header&gt;<br />
+        &nbsp;&nbsp;&lt;h1&gt;My Android Apps&lt;/h1&gt;<br />
+        &lt;/header&gt;<br /><br />
+
+        &lt;main class="container"&gt;<br />
+        &nbsp;&nbsp;&lt;div class="card"&gt;<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&lt;div class="android-badge"&gt;1&lt;/div&gt;<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&lt;h2&gt;Android Studio Installation&lt;/h2&gt;<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&lt;p&gt;Learn how to download, extract and configure Android Studio on Linux (Manjaro)
+        without installer.&lt;/p&gt;<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&lt;div class="card-actions"&gt;<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;button class="btn" onclick="alert('No download needed - Practical guide
+        only!')"&gt;View Guide&lt;/button&gt;<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&lt;/div&gt;<br />
+        &nbsp;&nbsp;&lt;/div&gt;<br />
+        &nbsp;&nbsp;...<br />
+        &nbsp;&nbsp;&lt;!-- Cards 2 through 9 follow same structure --&gt;<br />
+        &nbsp;&nbsp;...<br />
+        &lt;/main&gt;<br /><br />
+
+        &lt;footer&gt;<br />
+        &nbsp;&nbsp;&amp;copy; 2025 Siddhesh Sonar | All Rights Reserved<br />
+        &lt;/footer&gt;<br /><br />
+
+        &lt;/body&gt;<br />
+        &lt;/html&gt;<br /><br />
+
+        &lt;style&gt;<br />
+        * { box-sizing: border-box; }<br /><br />
+
+        body {<br />
+        &nbsp;&nbsp;background-color: var(--background);<br />
+        &nbsp;&nbsp;color: var(--text-primary);<br />
+        &nbsp;&nbsp;font-family: 'Roboto', 'Quicksand', sans-serif;<br />
+        &nbsp;&nbsp;margin: 0;<br />
+        &nbsp;&nbsp;padding: 0;<br />
+        &nbsp;&nbsp;line-height: 1.6;<br />
+        }<br /><br />
+
+        header {<br />
+        &nbsp;&nbsp;padding: 1.5rem 1rem;<br />
+        &nbsp;&nbsp;background: var(--header-bg);<br />
+        &nbsp;&nbsp;color: var(--text-on-primary);<br />
+        &nbsp;&nbsp;box-shadow: 0 4px 6px var(--shadow-color);<br />
+        }<br />
+
+        header h1 {<br />
+        &nbsp;&nbsp;margin: 0;<br />
+        &nbsp;&nbsp;font-size: 2.2rem;<br />
+        &nbsp;&nbsp;font-weight: 500;<br />
+        &nbsp;&nbsp;letter-spacing: 0.5px;<br />
+        }<br /><br />
+
+        .theme-switch {<br />
+        &nbsp;&nbsp;position: relative;<br />
+        &nbsp;&nbsp;display: inline-block;<br />
+        &nbsp;&nbsp;width: 60px;<br />
+        &nbsp;&nbsp;height: 30px;<br />
+        }<br />
+
+        .theme-switch input {<br />
+        &nbsp;&nbsp;opacity: 0;<br />
+        &nbsp;&nbsp;width: 0;<br />
+        &nbsp;&nbsp;height: 0;<br />
+        }<br /><br />
+
+        :root {<br />
+        &nbsp;&nbsp;--primary-color: #3ddc84;<br />
+        &nbsp;&nbsp;--secondary-color: #4285f4;<br />
+        &nbsp;&nbsp;--accent-color: #ff5252;<br />
+        &nbsp;&nbsp;--background: #121212;<br />
+        &nbsp;&nbsp;--card-bg: #1e1e1e;<br />
+        &nbsp;&nbsp;--header-bg: linear-gradient(90deg, #0b331e, #1a3c6e);<br />
+        &nbsp;&nbsp;--text-primary: #e8eaed;<br />
+        &nbsp;&nbsp;--text-secondary: #9aa0a6;<br />
+        &nbsp;&nbsp;--text-on-primary: #ffffff;<br />
+        &nbsp;&nbsp;--text-on-surface: #cfcfcf;<br />
+        &nbsp;&nbsp;--shadow-color: rgba(0, 0, 0, 0.3);<br />
+        &nbsp;&nbsp;--hover-shadow: rgba(61, 220, 132, 0.2);<br />
+        &nbsp;&nbsp;--border-color: #303134;<br />
+        }<br />
+        &lt;/style&gt;
+    </p>
+    </p>
+
+</body>
+
+</html>
